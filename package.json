@@ -1,6 +1,6 @@
 {
   "name": "span_challenge_nodejs",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Command-line application",
   "main": "dist/main.js",
   "scripts": {
@@ -10,13 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielmaartens/span_challenge_nodejs.git"
+    "url": "git+https://github.com/danielmaartens/span_challenge_nodejs.git"
   },
   "keywords": [
     "nodeJS"
   ],
   "author": "Daniel Maartens",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielmaartens/span_challenge_nodejs/issues"
+  },
+  "homepage": "https://github.com/danielmaartens/span_challenge_nodejs#readme",
   "dependencies": {
     "typescript": "2.7.2"
   },
