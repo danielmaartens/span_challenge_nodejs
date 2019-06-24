@@ -1,0 +1,3 @@
+apps:
+  - script   : 'main.js'
+    name     : 'span_challenge_nodejs'
