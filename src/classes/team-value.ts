@@ -1,13 +1,14 @@
-import {TeamValueI} from '../interfaces';
+import {TeamValueI, TeamValueObject} from '../interfaces';
 
-class TeamValue implements TeamValueI {
+export class TeamValue implements TeamValueI {
     private name: string;
     private value: number;
     private rank: number;
 
-    public TeamValue(name: string, value: number) {
-        this.name = name;
-        this.value = value;
+    constructor(values: TeamValueObject) {
+        this.name = values.name;
+        this.value = values.value;
+        this.rank = values.rank;
     }
 
     public setName(name: string) {
