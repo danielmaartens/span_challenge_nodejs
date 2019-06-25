@@ -1,14 +1,12 @@
 import {TeamValueI, TeamValueObject} from "../interfaces";
 import {TeamValue} from '../classes';
 import * as fs from 'fs';
-import * as path from 'path';
-
-export const filePath: string = path.resolve(__dirname, '../../data/input.csv').toString();
-export const dirFilePath: string = __dirname;
+import * as path from "path";
 
 export class Utils {
 
-    public static TeamResultGroupingPattern: RegExp = /^([a-zA-Z\s]+)([0-9]+$)/;
+    public static TEAM_RESULT_GROUPING_PATTERN: RegExp = /^([a-zA-Z\s]+)([0-9]+$)/;
+    public static TEST_FILE = path.resolve(__dirname, '../../data/input.csv').toString();
 
     private static StandardInput: NodeJS.ReadStream = process.stdin;
 
@@ -51,11 +49,21 @@ export class Utils {
         }
     }
 
+    public static  convertTeamValueListToMap(teamValues: TeamValueI[] ): Map<string, number> {
+    const map: Map<string, number> = new Map<string, number>();
+
+    for (const team of teamValues) {
+        map.set(team.getName(), team.getValue());
+    }
+
+    return map;
+}
+
     public static getOrderedMatchPointsFromFile(file: string): TeamValueI[] {
         let teamMatchPoints: TeamValueI[] = [];
         let finalTeamMatchPoints: TeamValueI[] = [];
 
-        const lines: string[] = fs.readFileSync(filePath).toString().split('\n');
+        const lines: string[] = fs.readFileSync(Utils.TEST_FILE).toString().split('\n');
 
         for (const line of lines) {
 
@@ -63,7 +71,7 @@ export class Utils {
             const matchResults: string[] = line.split(', ');
 
             for (const result of matchResults) {
-                const teamResult: TeamValueI = this.getTeamResultFromString(result, Utils.TeamResultGroupingPattern);
+                const teamResult: TeamValueI = this.getTeamResultFromString(result, Utils.TEAM_RESULT_GROUPING_PATTERN);
 
                 if (teamResult) {
                     scores.push(teamResult);
