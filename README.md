@@ -1,6 +1,8 @@
 # span_challenge_nodejs #
 
-This is a command-line application that will calculate the ranking table for a
+### League Rank Calculator
+
+This is a command-line application written in `NodeJS` that will calculate the ranking table for a
 soccer league.
 
 ### Requirements

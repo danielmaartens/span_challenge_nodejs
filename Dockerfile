@@ -1,4 +1,3 @@
-# TODO CHANGE ME
 # build using :             docker build -t span-challenge-nodejs -f Dockerfile .
 # run using :               docker run -d -v src:/usr/src/src --name span-challenge-nodejs span-challenge-nodejs
 
