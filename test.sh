@@ -23,9 +23,10 @@ loader(){
 	printf "${red}Done !${white} ${space} \r\n\n"
 }
 
-echo "Setting up..."
-sh setup.sh >/dev/null 2>&1 & pid=$!
-loader $pid
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+[ ! -d "$SCRIPTPATH/node_modules" ] && echo "Setting up..."
+[ ! -d "$SCRIPTPATH/node_modules" ] && sh setup.sh >/dev/null 2>&1 & pid=$!
+[ ! -d "$SCRIPTPATH/node_modules" ] && loader $pid
 
-echo "Run tests..."
+echo "Running tests..."
 mocha --require ts-node/register **/*.spec.ts
