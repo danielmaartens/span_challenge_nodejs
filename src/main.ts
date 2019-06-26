@@ -1,64 +1,71 @@
 "use strict";
-import {Utils} from "./utils";
+import {Utils, Print} from "./utils";
+import * as fs from 'fs';
 
 async function run() {
 
     let running: boolean = true;
+    let answerYes: boolean;
 
-    console.log("\nWelcome to the Match Point Calculator !\n");
+    console.log("\nWelcome to the League Rank Calculator !\n");
 
-    const initialDelay: number = 1500;
-    let delay: number = initialDelay;
+    const print = new Print(1500);
 
-    Utils.delayedPrint("This program will calculate the ranking table for a soccer league.\n", delay);
-    delay += initialDelay;
+    print.delay("This program will calculate the ranking table for a soccer league.\n");
 
-    Utils.delayedPrint("The data for the results of the games should be stored in a text file.", delay);
-    delay += initialDelay;
+    print.delay("The data for the results of the games should be stored in a text file.");
 
     setTimeout(async () => {
         while (running) {
 
-
             console.log("\nPlease provide the full path of the file where your results are stored:\n");
 
-            let filePath = null;
+            // read in user input and store it in the filePath variable
+            const filePath = await Utils.input('Full File Path: ');
 
+            // Does file exist ?
+            if (fs.existsSync(filePath)) {
 
-            filePath = await Utils.input('Full File Path: ');
+                try {
+                    console.log("\nLEAGUE RANK RESULTS\n");
 
+                    // It does so let's start processing
+                    // process the file contents and get the league results
+                    const finalTeamMatchPoints = Utils.getLeagueResults(filePath);
 
-            try {
-                console.log("\nRESULTS\n");
+                    // Print out the ranks in a format specified in the challenge.
+                    for (const team of finalTeamMatchPoints) {
 
-                const finalTeamMatchPoints = Utils.getOrderedMatchPointsFromFile(filePath);
+                        const points = team.getValue();
+                        console.log(team.getRank() + ". " + team.getName() + ", " + points + (points === 1 ? " pt" : " pts"));
 
-                for (const team of finalTeamMatchPoints) {
+                    }
 
-                    const points = team.getValue();
-                    console.log(team.getRank() + ". " + team.getName() + ", " + points + (points === 1 ? " pt" : " pts"));
+                    console.log();
 
+                    answerYes = await Utils.inputToBoolean("\nWould you like to check match point results of another league ? [y/n]: ");
+
+                    while (answerYes === null) {
+                        console.log("\nI do not understand your command, please try again...");
+                        answerYes = await Utils.inputToBoolean("Would you like to check match point results of another league ? [y/n]: ");
+                    }
+
+                    running = answerYes;
+
+                } catch (error) {
+                    console.error("Something went wrong while trying to calculate the match points: ", error);
                 }
+            } else {
 
-                console.log();
+                running = await Utils.inputToBoolean("\nSorry, your file does not exist ! Please double-check your file path and try again... Press [c] to continue, or any other key (besides ENTER) to exit...\n");
 
-                let answer: string | boolean = await Utils.input("\nWould you like to check match point results of another league ? [y/n]: ", true);
-
-                while (answer === null) {
-                    console.log("\nI do not understand your command, please try again...");
-                    answer = await Utils.input("Would you like to check match point results of another league ? [y/n]: ", true);
-                }
-
-                running = Boolean(answer);
-
-            } catch (error) {
-                console.error("Something went wrong while trying to calculate the match points: ", error);
             }
         }
 
-        console.log("\nThank you for using the Match Point Calculator !");
+        console.log("\nThank you for using the League Rank Calculator !");
         process.exit();
-    }, delay);
+
+    }, print.getCurrentDelay());
 }
 
 run();

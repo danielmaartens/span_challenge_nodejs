@@ -7,9 +7,8 @@ import {suite, test} from "mocha-typescript";
 @suite('Team Value Tests')
 class TeamValueTest {
 
-    testFile: string;
-    teamValue: TeamValue;
-    teamResultGroupingPattern: RegExp;
+    private readonly teamValue: TeamValue;
+    private readonly teamResultGroupingPattern: RegExp;
 
     constructor() {
 
@@ -117,7 +116,7 @@ class FinalResultTest {
     finalRank: TeamValueI[];
 
     constructor() {
-        this.finalRank = Utils.getOrderedMatchPointsFromFile(Utils.TEST_FILE);
+        this.finalRank = Utils.getLeagueResults(Utils.TEST_FILE);
     }
 
     static before() {
