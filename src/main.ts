@@ -1,6 +1,7 @@
 "use strict";
 import {Utils, Print} from "./utils";
 import * as fs from 'fs';
+import untildify = require('untildify');
 
 async function run() {
 
@@ -24,7 +25,7 @@ async function run() {
             const filePath = await Utils.input('Full File Path: ');
 
             // Does file exist ?
-            if (fs.existsSync(filePath)) {
+            if (fs.existsSync(untildify(filePath))) {
 
                 try {
                     console.log("\nLEAGUE RANK RESULTS\n");
