@@ -32,8 +32,9 @@ export class Print {
 
             console.log(text);
 
-            this.runningDelay += this.initialDelay;
-        }, this.runningDelay)
+        }, this.runningDelay);
+
+        this.runningDelay += this.initialDelay;
     }
 
     public getCurrentDelay(n: number = 0) {
