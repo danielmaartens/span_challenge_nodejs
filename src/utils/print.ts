@@ -34,6 +34,8 @@ export class Print {
 
         }, this.runningDelay);
 
+        // runningDelay is incremented by initialDelay value
+        // so that next delayed print can occur timeously after this one by an initialDelay.
         this.runningDelay += this.initialDelay;
     }
 
