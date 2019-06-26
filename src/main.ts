@@ -22,7 +22,7 @@ async function run() {
             console.log("\nPlease provide the full path of the file where your results are stored:\n");
 
             // read in user input and store it in the filePath variable
-            const filePath = await Utils.input('Full File Path: ');
+            const filePath = await Utils.input('Full File Path To Data: ');
 
             // Does file exist ?
             if (fs.existsSync(untildify(filePath))) {

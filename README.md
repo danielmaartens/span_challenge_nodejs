@@ -23,8 +23,10 @@ Lions 4, Grouches 0
 
 - You need to know the absolute file path to copy and paste it into the terminal
 
-### Setup, Test, Run
+#### NOTE
+- This program can handle tildes (`~`) at the start of the file path to replace `/Users/username` etc. 
 
+### Test and Run
 Before completing the following steps, please make sure you are in the root directory.
 
 ``` 
@@ -32,6 +34,8 @@ cd path/to/span_challenge_nodejs
 ```
 
 #### Programmatic Execution
+
+Scripts have been provided so that you do not have to focus on any initial setup, besides making sure you have `node 8`.
 
 ##### Options
 
@@ -60,8 +64,12 @@ sh docker_test.sh
 docker_run.sh
 ```
 
-#### Run manually without Docker
-Step 1 - npm install
+#### Manual Execution
+If you rather setup up manually then follow these steps.
+
+\* REQUIRED
+
+Step 1* - npm install
 ```
 npm install
 ```
@@ -71,7 +79,7 @@ Step 2 - run tests
 mocha --require ts-node/register **/*.spec.ts
 ```
 
-Step 3 - build
+Step 3* - build
 ```
 gulp
 ```
