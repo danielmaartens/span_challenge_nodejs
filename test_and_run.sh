@@ -33,10 +33,10 @@ echo "Building..."
 gulp >/dev/null 2>&1 & pid=$!
 loader $pid
 
-echo "Running Tests..."
+echo "\nRunning Tests...\n"
 mocha --require ts-node/register **/*.spec.ts
 
 cd ./dist
 
-echo "Running program..."
+echo "\nRunning application...\n"
 node main.js
