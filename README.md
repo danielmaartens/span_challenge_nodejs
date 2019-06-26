@@ -38,6 +38,8 @@ cd path/to/span_challenge_nodejs
 
 Scripts have been provided so that you do not have to focus on any initial setup, besides making sure you have `node 8`.
 
+All you to do is run the following from the project `root`:
+
 ##### Options
 
 1 - test and run
