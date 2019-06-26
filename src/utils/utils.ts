@@ -45,16 +45,15 @@ export class Utils {
 
             const points = team.getValue();
 
+            // Only change rank to running index if current points and previous points are different
+            // This is to make sure that teams who have the same points have the same rank.
             if (points !== previousTeamPoints) {
-                rank++;
+                rank = index;
             }
 
             team.setRank(rank);
 
-            if (points === previousTeamPoints) {
-                rank = index;
-            }
-
+            // Set previous points to current points for next iteration check.
             previousTeamPoints = points;
             index++;
         }
