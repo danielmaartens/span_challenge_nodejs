@@ -68,7 +68,7 @@ docker_run.sh
 ```
 
 #### Manual Execution
-If you rather setup up manually then follow these steps.
+If you rather setup up manually then follow these steps from the project `root`.
 
 \* REQUIRED
 
