@@ -10,8 +10,9 @@ soccer league.
 - Node 8 (optional if you have Docker)
 - Docker
 
-### Note
+### NOTE:
 - Results of your soccer league must be in a file with the following structure
+- Please make sure the file ends with the last line of match outcomes, i.e. do not leave any empty lines in the file.
 
 ```
 Lions 3, Snakes 3
@@ -23,7 +24,7 @@ Lions 4, Grouches 0
 
 - You need to know the absolute file path to copy and paste it into the terminal
 
-#### NOTE
+#### NB:
 - This program can handle tildes (`~`) at the start of the file path to replace `/Users/username` etc. 
 
 ### Test and Run
