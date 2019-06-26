@@ -311,6 +311,9 @@ export class Utils {
 
             return this.StandardInput.on('data', (data) => {
 
+                // In NodeJS the data received from input includes a newline at the end (as we hit enter)
+                // We must get rid of this newline to transform the string into a boolean value.
+                data = data.split('\n')[0];
                 res(data);
             });
         });
