@@ -98,7 +98,7 @@ export class Utils {
 
             // Each line represents the outcome of a match.
             // Each team's own outcome of the match is separated by a ", "
-            // which is why we first split the line by ", " to get a matchResults vector
+            // which is why we first split the line by ", " to get a matchResults array
             // of two strings representing the outcome of each team for the match.
             const matchResults: string[] = line.split(', ');
 
@@ -163,6 +163,8 @@ export class Utils {
      * @param allTeamMatchPoints
      */
     public static reduceTeamMatchPoints(allTeamMatchPoints: TeamValueI[]): TeamValueI[] {
+
+        // Using a map here makes it easier to reduce into a single entry per team.
         const finalTeamPoints = new Map();
 
         for (const matchPoints of allTeamMatchPoints) {
@@ -170,15 +172,18 @@ export class Utils {
             const name: string = matchPoints.getName();
             const points: number = matchPoints.getValue();
 
+            // If the name does not exist in the map, it will be initialised with the value of points.
+            // Otherwise it will just add this match's points to the previous points value.
+
             if (!finalTeamPoints.has(name)) {
                 finalTeamPoints.set(name, points);
             } else {
                 const nextPointsTotal: number = finalTeamPoints.get(name) + points;
-
                 finalTeamPoints.set(name, nextPointsTotal);
             }
         }
 
+        // Convert the map back into a list for better processing later.
         return Utils.convertTeamValueMapToList(finalTeamPoints);
     }
 
@@ -214,41 +219,44 @@ export class Utils {
 
         const matchPoints: TeamValueI[] = [];
 
+        // Initialise new TeamValue objects for each team
+        // setting initial points to 0
+
         const teamA: TeamValueI = matchResults[0];
         const teamB: TeamValueI = matchResults[1];
 
         const teamAName: string = teamA.getName();
         const teamAGoals: number = teamA.getValue();
-
         const initialTeamAValues: TeamValueObject = {
             name: teamAName,
             value: 0
         };
-
         const teamAPoints: TeamValueI = new TeamValue(initialTeamAValues);
-
 
         const teamBName: string = teamB.getName();
         const teamBGoals: number = teamB.getValue();
-
         const initialTeamBValues: TeamValueObject = {
             name: teamBName,
             value: 0
         };
-
         const teamBPoints: TeamValueI = new TeamValue(initialTeamBValues);
 
+        // Match is a DRAW
         if (teamAGoals === teamBGoals) {
 
             teamAPoints.setValue(1);
             teamBPoints.setValue(1);
 
+            // Team A WON
         } else if (teamAGoals > teamBGoals) {
             teamAPoints.setValue(3);
+
+            // Team B WON
         } else {
             teamBPoints.setValue(3);
         }
 
+        // Add the new objects to an empty array
         matchPoints.push(teamAPoints);
         matchPoints.push(teamBPoints);
 
