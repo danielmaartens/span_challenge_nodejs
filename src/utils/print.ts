@@ -15,7 +15,7 @@
  *
  * Every time the print.delayed() is invoked it uses the runningDelay property to figure out how long it should sleep for.
  *
- * So every subsequent call to the function will always result in an even delay between subsequent outputs.
+ * So every subsequent call to the function will always result in an even withDelay between subsequent outputs.
  */
 
 export class Print {
@@ -27,7 +27,7 @@ export class Print {
         this.runningDelay = initialDelay;
     }
 
-    public delay(text: string): void {
+    public withDelay(text: string): void {
         setTimeout(() => {
 
             console.log(text);

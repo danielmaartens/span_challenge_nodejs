@@ -12,9 +12,9 @@ async function run() {
 
     const print = new Print(1500);
 
-    print.delay("This program will calculate the ranking table for a soccer league.\n");
+    print.withDelay("This program will calculate the ranking table for a soccer league.\n");
 
-    print.delay("The data for the results of the games should be stored in a text file.");
+    print.withDelay("The data for the results of the games should be stored in a text file.");
 
     setTimeout(async () => {
         while (running) {
