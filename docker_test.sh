@@ -23,10 +23,15 @@ loader(){
 	printf "${red}Done !${white} ${space} \r\n\n"
 }
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-[ ! -d "$SCRIPTPATH/node_modules" ] && echo "Installing npm packages..."
-[ ! -d "$SCRIPTPATH/node_modules" ] && npm install >/dev/null 2>&1 & pid=$!
-[ ! -d "$SCRIPTPATH/node_modules" ] && loader $pid
+echo "Cleaning up..."
+sh cleanup.sh >/dev/null 2>&1 & pid=$!
+loader $pid
 
-echo "Running tests..."
-mocha --require ts-node/register **/*.spec.ts
+echo "Building docker image..."
+docker build -t span-challenge-nodejs -f Dockerfile . >/dev/null 2>&1 & pid=$!
+loader $pid
+
+echo "Setting up docker container..."
+docker run -d -v src:/usr/src/src --name span-challenge-nodejs span-challenge-nodejs >/dev/null
+
+docker exec -it span-challenge-nodejs /bin/sh -ci 'mocha --require ts-node/register **/*.spec.ts && exit'

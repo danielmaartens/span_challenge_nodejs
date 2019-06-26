@@ -35,30 +35,29 @@ cd path/to/span_challenge_nodejs
 
 ##### Options
 
-1 - setup, test and run
+1 - test and run
 ``` 
-sh setup_test_and_run_without_docker.sh
+sh test_and_run.sh
 ```
-
-2 - setup
-``` 
-sh setup.sh
-```
-3 - test
+2 - test
 ``` 
 sh test.sh
 ```
-4 - run
+3 - run
 ``` 
-sh run_without_docker.sh
+sh run.sh
 ```
-5 - test and run with docker
+4 - test and run with docker
 ``` 
-test_and_run_with_docker.sh
+docker_test_and_run.sh
+```
+5 - test with docker
+``` 
+sh docker_test.sh
 ```
 6 - run with docker
 ``` 
-run_with_docker.sh
+docker_run.sh
 ```
 
 #### Run manually without Docker

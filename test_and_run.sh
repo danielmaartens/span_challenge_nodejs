@@ -1,5 +1,6 @@
 #!/usr/local/bin/bash
 
+
 loader(){
 	MAX=10
 	ARR=( $(eval echo {1..${MAX}}) )
@@ -28,5 +29,14 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 [ ! -d "$SCRIPTPATH/node_modules" ] && npm install >/dev/null 2>&1 & pid=$!
 [ ! -d "$SCRIPTPATH/node_modules" ] && loader $pid
 
-echo "Running tests..."
+echo "Building..."
+gulp >/dev/null 2>&1 & pid=$!
+loader $pid
+
+echo "Running Tests..."
 mocha --require ts-node/register **/*.spec.ts
+
+cd ./dist
+
+echo "Running program..."
+node main.js

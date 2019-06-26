@@ -28,5 +28,11 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 [ ! -d "$SCRIPTPATH/node_modules" ] && npm install >/dev/null 2>&1 & pid=$!
 [ ! -d "$SCRIPTPATH/node_modules" ] && loader $pid
 
-echo "Running tests..."
-mocha --require ts-node/register **/*.spec.ts
+echo "Building..."
+gulp >/dev/null 2>&1 & pid=$!
+loader $pid
+
+cd ./dist
+
+echo "Running program..."
+node main.js
