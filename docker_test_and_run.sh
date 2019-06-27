@@ -34,4 +34,4 @@ loader $pid
 echo "Setting up docker container..."
 docker run -d -v src:/usr/src/src --name span-challenge-nodejs span-challenge-nodejs >/dev/null
 
-docker exec -it span-challenge-nodejs /bin/sh -ci 'mocha --require ts-node/register **/*.spec.ts && node main.js && exit'
+docker exec -it span-challenge-nodejs /bin/sh -ci 'mocha --require ts-node/register **/*.spec.js && node main.js && exit'

@@ -3,7 +3,12 @@
 
 FROM node:8.9.4-alpine
 
-RUN npm install -g gulp
+RUN npm install -g \
+    yarn \
+    gulp \
+    mocha \
+    ts-node \
+    typescript
 
 RUN mkdir -p /usr/src
 
@@ -11,7 +16,7 @@ WORKDIR /usr/src
 
 COPY package.json /usr/src/
 
-RUN npm install
+RUN yarn install
 
 COPY . /usr/src
 

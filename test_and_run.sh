@@ -34,7 +34,7 @@ gulp >/dev/null 2>&1 & pid=$!
 loader $pid
 
 echo "\nRunning Tests...\n"
-mocha --require ts-node/register **/*.spec.ts
+mocha **/*.spec.ts
 
 cd ./dist
 

@@ -2,7 +2,7 @@
 
 ### League Rank Calculator
 
-This is a command-line application written in `NodeJS` that will calculate the ranking table for a
+This is a command-line application written in `NodeJS (TypeScript)` that will calculate the ranking table for a
 soccer league.
 
 ### Requirements
