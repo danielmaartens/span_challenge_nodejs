@@ -22,7 +22,7 @@ Lions 4, Grouches 0
 ```
 
 - Please make sure the file ends with the last line of match outcomes, i.e. do not leave any empty lines in the file.
-- You need to know the absolute file path to copy and paste it into the terminal
+- You need to know the absolute file path to copy and paste it into the terminal.
 
 #### NB:
 - This program can handle tildes (`~`) at the start of the file path to replace `/Users/username` etc. 
